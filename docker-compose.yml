@@ -13,4 +13,6 @@ services:
       - SECRET_KEY=some_key
       - ALLOWED_HOSTS=*
       - DJANGO_SETTINGS_MODULE=test_assignment.settings.dev
+      - GITHUB_CLIENT_ID=$GITHUB_CLIENT_ID
+      - GITHUB_CLIENT_SECRET=$GITHUB_CLIENT_SECRET
     command: python manage.py runserver 0.0.0.0:5000
