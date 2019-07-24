@@ -16,6 +16,9 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from test_assignment.views import login
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^login/', admin.site.urls),
 ]
