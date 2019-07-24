@@ -13,5 +13,4 @@ RUN apk update \
 USER test_assignment
 
 COPY . .
-
-CMD gunicorn test_assignment.wsgi:application -b 0.0.0.0:$PORT --workers=3
+CMD ./run.sh
