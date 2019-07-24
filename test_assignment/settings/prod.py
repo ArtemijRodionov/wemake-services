@@ -7,7 +7,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 SECRET_KEY = os.environ['SECRET_KEY']
 
 DEBUG = False
-
 ALLOWED_HOSTS = os.environ['ALLOWED_HOSTS'].split(',')
 
 # Application definition
@@ -29,6 +28,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'test_assignment.middleware.GithubOauthMiddleware',
 ]
 
 ROOT_URLCONF = 'test_assignment.urls'
@@ -88,8 +88,28 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+    },
+}
+
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
+# https://help.heroku.com/J2R1S4T8/can-heroku-force-an-application-to-use-ssl-tls
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 GITHUB_CLIENT_SECRET = os.environ['GITHUB_CLIENT_SECRET']
 GITHUB_CLIENT_ID = os.environ['GITHUB_CLIENT_ID']
 

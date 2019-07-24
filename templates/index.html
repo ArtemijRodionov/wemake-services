@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ username }}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yegor256/tacit@gh-pages/tacit-css.min.css"/>
+  <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  {% if github %}
+    <div>
+      <span>{{ username }}</span>
+    </div>
+  {% else %}
+    <div>Please, <a href="{% url 'login' %}">log in</a>.</div>
+  {% endif %}
+</body>
+
+</html>
