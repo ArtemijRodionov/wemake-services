@@ -2,7 +2,7 @@ import os
 
 import django_heroku
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 SECRET_KEY = os.environ['SECRET_KEY']
 
@@ -36,13 +36,14 @@ ROOT_URLCONF = 'test_assignment.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.static',
                 'django.contrib.messages.context_processors.messages',
             ],
         },
@@ -89,5 +90,7 @@ STATIC_URL = '/static/'
 
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
+GITHUB_CLIENT_SECRET = os.environ['GITHUB_CLIENT_SECRET']
+GITHUB_CLIENT_ID = os.environ['GITHUB_CLIENT_ID']
 
 django_heroku.settings(locals())
