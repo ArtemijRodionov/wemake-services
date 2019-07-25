@@ -1,34 +1,28 @@
 sudo: required
-
 services:
 - docker
 language: python
-
 python:
 - 3.7-dev
 env:
   global:
   - DOCKER_COMPOSE_VERSION=1.24.1
-
 before_install:
 - sudo rm /usr/local/bin/docker-compose
 - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname
   -s`-`uname -m` > docker-compose
 - chmod +x docker-compose
 - sudo mv docker-compose /usr/local/bin
-
 jobs:
   include:
   - stage: Tests
     script:
     - docker-compose run --rm app python manage.py test
-
 deploy:
   provider: heroku
   api_key:
-    secure: AJcVjDUgysM+RUUN5lardE71sSwc/sFw6HsmM3wfclybcqW3Op/jAzsbPppI5oaQdGasDk+G/rzxH6Mr9xG1syARqkXlVwJdTgC17pDN8XOPKVkNkJHaXkzTIqjczU5mabz5E4XmPjTB77rZhkBHB/IK1X16syC8KH+kADDEhvW/cUQT9awQjg1Q3C1BeiO2HEgZCS3pseR03RLTSTDq8AOfbaYqADdQn84gKRvDYkNyFX6DYOMaHE0IVX4OUcqwmcbIzV9SgOP+fPGwtuFuYm4q+opAZ969fNnWFirqTRjiAjidg+zNbkLM2Zc86e/kCGBVSqdZbfHiWP7KaGHtiuyLQLxL4aZyOxVvA2rLtt2Oq6XE2YXOWL0uqQmSAbk30CddJiBrCe5rAwdkh+mI0qCubK88UAtYdThJXwwhthgbODJmSygKIo1pgWzAp2qlz8XzyZaLawwDTnSFLNFO52H1KsWVUE/Jj002DbTYC3uk/bvBUIgR0zGZPUUqYXEHv777+W8DVeC0iPZ1YL7+M6u2MzgGXWSYgmAstTebZ4rR829HXPDFbjTCEoKr3bkEJ5P7zhqXjGGxWrxB9Giz1ORaU9FNR6MJUTWQoxFcl2OJLn6Y3DIxZ7bya0ql/pDjloRxrtp7e71KDG8RzIa0KoVIau91bIlgAOFKUL0jDYk=
+    secure: PzcZ5x1YKSv0kZR3pYAI7+KR9ZFKITHYBvTgNfra+/RwiaG9bTMoQuuKLgjRexMABk5FyD57WAbZL5h00l1gvh8ZQDEcIKxQ/Q7PPR7+klcoEOxKeOsmTeampNgT7OPMDu8s2vjoW91y+XVmnCxrFv/Ve7SYIELlJBQmCx4S3b5YzS4gYhcOKrt2Mt32g0PTGw+IjBlBYpKqUjddp2msPDg2RAgsH+tGnMVkHcVcCYgcGMlxK8ayvrF1fZoT0epREQA8Vp1mOX/Pk11tPJc90EW8hTSHfuZXsKDQHK6RQSI9kldRm/yOdxniL+XK2aPUItV7I56NK2T70razbUGFnCByPq3Rpk6nGqjqmyhNIZ62AWZ7dVidUHYKdnGSjigPWNQ0ZzjL3HCE7D2+J8Er/AuWZWHRmICBZmPxwrET3zE+u+rMdj+RVcHz/hxK9NwRuPPCxt7C5fJB6bMBY/Hg7Vz5QmsMsdYEVuG9orwtnw1m6lAla3vsjfz7I3+GsE/TCaail/2P2TcnSiCHYXSCeCZpyvuJ5YLVHKfz1gFjtMl1sgeh+0oD5h0sv7UqMZsx5xPtQKE8PVJ1zR3A02nBx08rL/5BFx+jFCuEewhwbCbHq54c4LUniNj0IQK8fwXtDY6io0IM/wuPaO3mp0CNp8ceTKP+wkzLtVPvnhdfugA=
   on:
     branch: master
-
 after_failure:
 - docker-compose logs
