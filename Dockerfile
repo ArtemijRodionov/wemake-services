@@ -5,7 +5,6 @@ WORKDIR /usr/code
 
 COPY requirements.txt .
 RUN apk update \
-    # add psycopg2 deps
     && apk add --virtual .build-deps gcc python-dev musl-dev postgresql-dev \
     && pip install -r requirements.txt \
     && apk del .build-deps \
