@@ -1,20 +1,35 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>{{ username }}</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yegor256/tacit@gh-pages/tacit-css.min.css"/>
-  <meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
+  <head>
+    <title>{{ username }}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yegor256/tacit@gh-pages/tacit-css.min.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
 
-<body>
-  {% if github %}
-    <div>
-      <span>{{ username }}</span>
-    </div>
-  {% else %}
-    <div>Please, <a href="{% url 'login' %}">log in</a>.</div>
-  {% endif %}
-</body>
+  <body>
+    {% if not request.github.authorized %}
+      <div>Please, <a href="{% url 'login' %}">log in</a>.</div>
+    {% else %}
+      <aside>
+        <img src="{{ avatar_url }}" alt="Avatar">
+        <h1>{{ username }}</h1>
+      </aside>
+      <section>
+        <table>
+          <tbody>
+            {% for repo in repos %}
+              <tr>
+                <td>
+                  <a href="{{ repo.url }}">{{ repo.name }}</a>
+                  <p>{{ repo.description }}</p>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </section>
+    {% endif %}
+  </body>
 
 </html>
