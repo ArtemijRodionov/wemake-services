@@ -1,4 +1,5 @@
 # Test assignment
+[![Build Status](https://travis-ci.org/artemiy312/test_assignment.svg?branch=master)](https://travis-ci.org/artemiy312/test_assignment)
 
 ## Subject
 
