@@ -1,5 +1,5 @@
 # Test assignment
-[![Build Status](https://travis-ci.org/artemiy312/test_assignment.svg?branch=master)](https://travis-ci.org/artemiy312/test_assignment)
+[![Build Status](https://travis-ci.org/artemiy312/wemake-services.svg?branch=master)](https://travis-ci.org/artemiy312/wemake-services)
 
 ## Subject
 
