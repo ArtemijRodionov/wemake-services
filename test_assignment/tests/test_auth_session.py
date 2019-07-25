@@ -2,13 +2,14 @@ from unittest.mock import MagicMock
 
 from django.test import TestCase
 from oauthlib.oauth2.rfc6749.errors import MissingCodeError
+
 from test_assignment import auth_session
 
 
 class GithubSession(TestCase):
 
     def request(self):
-        return MagicMock(url='https://example.com', session={})
+        return MagicMock(url='https://example.com', session=self.client.session)
 
     def test_auth_url(self):
         """Set `state` parameter to a url and setup session."""
