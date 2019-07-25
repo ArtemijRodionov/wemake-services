@@ -1,7 +1,5 @@
 import os
 
-import django_heroku
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 SECRET_KEY = os.environ['SECRET_KEY']
@@ -126,5 +124,3 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 GITHUB_CLIENT_SECRET = os.environ['GITHUB_CLIENT_SECRET']
 GITHUB_CLIENT_ID = os.environ['GITHUB_CLIENT_ID']
-
-django_heroku.settings(locals(), logging=False)
