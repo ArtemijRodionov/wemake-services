@@ -22,7 +22,7 @@ def index(request):
 
 
 def login(request):
-    """"Redirect an user to request their GitHub identity."""
+    """"Redirect an user to request its GitHub identity."""
     return redirect(request.github.auth_url())
 
 

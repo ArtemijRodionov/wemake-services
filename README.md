@@ -17,3 +17,11 @@ See for [details](https://github.com/wemake-services/meta/issues/7)
 ## Result
 
 [The resulting service](https://desolate-peak-51216.herokuapp.com)
+
+## Development
+
+```bash
+docker-compose up -d
+docker-compose exec app python manage.py migrate
+docker-compose exec app python manage.py collectstatic --noinput
+```
