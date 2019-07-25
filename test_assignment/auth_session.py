@@ -1,5 +1,4 @@
 import abc
-from unittest.mock import MagicMock
 
 from django.conf import settings
 from requests_oauthlib import OAuth2Session
