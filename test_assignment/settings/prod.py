@@ -91,13 +91,27 @@ STATIC_URL = '/static/'
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': ('%(asctime)s [%(process)d] [%(levelname)s] ' +
+                       'pathname=%(pathname)s lineno=%(lineno)s ' +
+                       'funcname=%(funcName)s %(message)s'),
+            'datefmt': '%Y-%m-%d %H:%M:%S'
+        },
+    },
     'handlers': {
         'console': {
+            'level': 'DEBUG',
             'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
         },
     },
     'loggers': {
         'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+        'test_assignment': {
             'handlers': ['console'],
             'level': 'INFO',
         },
@@ -107,10 +121,10 @@ LOGGING = {
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 SECURE_SSL_REDIRECT = True
-# https://help.heroku.com/J2R1S4T8/can-heroku-force-an-application-to-use-ssl-tls
+# Heroku router behaves as a proxy and set X-Forwarded-Proto header
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 GITHUB_CLIENT_SECRET = os.environ['GITHUB_CLIENT_SECRET']
 GITHUB_CLIENT_ID = os.environ['GITHUB_CLIENT_ID']
 
-django_heroku.settings(locals())
+django_heroku.settings(locals(), logging=False)

@@ -59,6 +59,5 @@ class GithubSession(AuthSession):
             client_secret=settings.GITHUB_CLIENT_SECRET,
             authorization_response=self.request.build_absolute_uri(),
         )
-        self.request.session[self.session_key].update(
-            token=token,
-        )
+        self.request.session[self.session_key]['token'] = token
+        self.request.session.modified = True
