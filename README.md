@@ -13,3 +13,7 @@ So, the process is:
 
 
 See for [details](https://github.com/wemake-services/meta/issues/7)
+
+## Result
+
+[The resulting service](https://desolate-peak-51216.herokuapp.com)
