@@ -11,21 +11,22 @@ env:
   - DOCKER_COMPOSE_VERSION=1.24.1
 
 before_install:
-  - sudo rm /usr/local/bin/docker-compose
-  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-  - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
+- sudo rm /usr/local/bin/docker-compose
+- curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname
+  -s`-`uname -m` > docker-compose
+- chmod +x docker-compose
+- sudo mv docker-compose /usr/local/bin
 
 jobs:
   include:
-    - stage: "Tests"
-      script:
-        - docker-compose run --rm app python manage.py test
+  - stage: Tests
+    script:
+    - docker-compose run --rm app python manage.py test
 
 deploy:
   provider: heroku
   api_key:
-    secure: U/beFj1Eeq7fGiYNxrDH3jd00A/Y2adFyoOXKPfLQJxgfAxCH7WxIQLoQbnUnQXgF2etRw4mW/Bw/Qx+AfPVQ4Q9BxXZD/K19C/07YPaGlzmU26I96UYe9n1qrnyE0FumQe0tm+nQswuXx6TfH1nVgtxeCLIcP63Ncie/kl2mjYzCDsmL00hrUx/VISS/fNyYm5s3HXIK1GcxUIuRIkBBDQdouJpXgPMo8MEOpHUlVbjyM70FEf5VY6ISBy9/SXnDrouk1FBgRLJXm4dleuLn0gGVqvgstosX0sEVUhD9+ZKOokULjkaJ0eyj78MzZcVtJkYjObIrj610U5hb/1Bd437/TAqHDsfJTVeRWW+h+FS9Fk7kny26480uQ2uAxSkix8b3SPvA7nGVveIyG4fw7turq0Yn4IO7Qd0t/zHF/9KRQvMLhsPUXuVt/CGsUFSdU2xv6ivSgKyRQ0fLn8pXZT/HqJAUu1bVMVv91tiT17enXoxGc0pFzCaJvAYMsytJrWf5X4ftNR1CdRl99yiE0mnyGcT8fQ3p0dNLQicAL2gBIj/WNlM5GEN642mvQnCl/qKPBBfU3fAZI2BsTl2fIaIc7M2CNwFWBXmY06fPtOsBH4Ug7vLMlie07MVMWjOKhwlz4/eGaG/CHIAKfKswMxa3BcwDxSnUKCVbA63wbw=
+    secure: AJcVjDUgysM+RUUN5lardE71sSwc/sFw6HsmM3wfclybcqW3Op/jAzsbPppI5oaQdGasDk+G/rzxH6Mr9xG1syARqkXlVwJdTgC17pDN8XOPKVkNkJHaXkzTIqjczU5mabz5E4XmPjTB77rZhkBHB/IK1X16syC8KH+kADDEhvW/cUQT9awQjg1Q3C1BeiO2HEgZCS3pseR03RLTSTDq8AOfbaYqADdQn84gKRvDYkNyFX6DYOMaHE0IVX4OUcqwmcbIzV9SgOP+fPGwtuFuYm4q+opAZ969fNnWFirqTRjiAjidg+zNbkLM2Zc86e/kCGBVSqdZbfHiWP7KaGHtiuyLQLxL4aZyOxVvA2rLtt2Oq6XE2YXOWL0uqQmSAbk30CddJiBrCe5rAwdkh+mI0qCubK88UAtYdThJXwwhthgbODJmSygKIo1pgWzAp2qlz8XzyZaLawwDTnSFLNFO52H1KsWVUE/Jj002DbTYC3uk/bvBUIgR0zGZPUUqYXEHv777+W8DVeC0iPZ1YL7+M6u2MzgGXWSYgmAstTebZ4rR829HXPDFbjTCEoKr3bkEJ5P7zhqXjGGxWrxB9Giz1ORaU9FNR6MJUTWQoxFcl2OJLn6Y3DIxZ7bya0ql/pDjloRxrtp7e71KDG8RzIa0KoVIau91bIlgAOFKUL0jDYk=
   on:
     branch: master
 
