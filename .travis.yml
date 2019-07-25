@@ -1,0 +1,33 @@
+sudo: required
+
+services:
+- docker
+language: python
+
+python:
+- 3.7-dev
+env:
+  global:
+  - DOCKER_COMPOSE_VERSION=1.24.1
+
+before_install:
+- sudo rm /usr/local/bin/docker-compose
+- curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname
+  -s`-`uname -m` > docker-compose
+- chmod +x docker-compose
+- sudo mv docker-compose /usr/local/bin
+- docker-compose build
+- docker-compose up -d
+
+script:
+- docker-compose exec app python manage.py test
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: U/beFj1Eeq7fGiYNxrDH3jd00A/Y2adFyoOXKPfLQJxgfAxCH7WxIQLoQbnUnQXgF2etRw4mW/Bw/Qx+AfPVQ4Q9BxXZD/K19C/07YPaGlzmU26I96UYe9n1qrnyE0FumQe0tm+nQswuXx6TfH1nVgtxeCLIcP63Ncie/kl2mjYzCDsmL00hrUx/VISS/fNyYm5s3HXIK1GcxUIuRIkBBDQdouJpXgPMo8MEOpHUlVbjyM70FEf5VY6ISBy9/SXnDrouk1FBgRLJXm4dleuLn0gGVqvgstosX0sEVUhD9+ZKOokULjkaJ0eyj78MzZcVtJkYjObIrj610U5hb/1Bd437/TAqHDsfJTVeRWW+h+FS9Fk7kny26480uQ2uAxSkix8b3SPvA7nGVveIyG4fw7turq0Yn4IO7Qd0t/zHF/9KRQvMLhsPUXuVt/CGsUFSdU2xv6ivSgKyRQ0fLn8pXZT/HqJAUu1bVMVv91tiT17enXoxGc0pFzCaJvAYMsytJrWf5X4ftNR1CdRl99yiE0mnyGcT8fQ3p0dNLQicAL2gBIj/WNlM5GEN642mvQnCl/qKPBBfU3fAZI2BsTl2fIaIc7M2CNwFWBXmY06fPtOsBH4Ug7vLMlie07MVMWjOKhwlz4/eGaG/CHIAKfKswMxa3BcwDxSnUKCVbA63wbw=
+  on:
+    branch: master
+
+after_failure:
+- docker-compose logs
