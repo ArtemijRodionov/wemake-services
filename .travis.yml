@@ -18,6 +18,9 @@ jobs:
   - stage: Tests
     script:
     - docker-compose run --rm app python manage.py test
+  - stage: Lint
+    script:
+    - docker-compose run --rm app python manage.py coala
 deploy:
   provider: heroku
   api_key:
