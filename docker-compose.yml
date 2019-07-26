@@ -16,3 +16,10 @@ services:
       - GITHUB_CLIENT_ID=$GITHUB_CLIENT_ID
       - GITHUB_CLIENT_SECRET=$GITHUB_CLIENT_SECRET
     command: python manage.py runserver 0.0.0.0:5000
+
+  coala:
+    image: fidals/coala-ci
+    working_dir: /usr/code
+    command: coala
+    volumes:
+      - ./:/usr/code

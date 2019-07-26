@@ -1,7 +1,6 @@
 from unittest.mock import MagicMock
 
 from django.test import TestCase
-from oauthlib.oauth2.rfc6749.errors import MissingCodeError
 
 from test_assignment import auth_session
 

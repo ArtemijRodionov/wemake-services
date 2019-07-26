@@ -10,8 +10,14 @@ def index(request):
             'username': 'Anonym',
         }
     else:
-        user = request.github.client.get('https://api.github.com/user').json()
-        repos = request.github.client.get(user['repos_url']).json()
+        response = request.github.client.get('https://api.github.com/user')
+        response.raise_for_status()
+        user = response.json()
+
+        response = request.github.client.get(user['repos_url'])
+        response.raise_for_status()
+        repos = response.json()
+
         context = {
             'username': user['login'],
             'avatar_url': user['avatar_url'],
