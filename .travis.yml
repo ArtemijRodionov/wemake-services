@@ -20,11 +20,11 @@ jobs:
     - docker-compose run --rm app python manage.py test
   - stage: Lint
     script:
-    - docker-compose run --rm app python manage.py coala
+    - docker-compose run --rm coala
 deploy:
   provider: heroku
   api_key:
-    secure: h6jq9WLdGyeT7w2uxGrpCC9DsA0YEuKKiLFFxKpzpb5kfRLXYrOHmAA0511YuN3bgzY7ZmvRm+qGeTjhUKR2n0B/ni94Mfw3dtlI16HKppPjarkoMo6emK08bjvWau/2pJP96ZSaigSmlk+YfrfF8wywtJakpzFOLFq/E5bRSKrYnM+2yEqxMC6hAxvKVEhHZyjv3N9IgCkiSvTTvwVXMd5FoxgimkRjcKFyIZFAZ2U9Sx4Sl08DH9a4rFPTbCQCTI1BD2Pft5iKPQPuZqHUfcThOHCdI6ACwLnN2IjZYfOu6lzHyMaOxyOF4xjOAdPBvt0Z/EKxsx1v2jgdRMb5OXIYl9ZKbAcSZ+8GbylV7PqIYZ7Gf7+8fEMqADehvytVGfKKFtXdz4kCBUIMoMAgkmdRfbrWjcu5xnn075RVWO21hDf7M0eYPvjmHqdDQzwlSSpMENhycUZOEijqFHOKoUZi1gFaWCf00in2e2NqhoRf1D3KMYatr7O7pNerQ2MG+hXpE4CqdkclC2B4dXSPjOB1OL+VYZPeVkIjzo/6ENr9oVKF+ygBInCRvYr3OEnjwTHEYirwr4UtVRssJ0kV7yXmB1hxtTKceKHiTSeu5yZMHJ4SQ+Lg6ICYD49phIXvnsm0EeiSgtPA9pwvuWsvEMyBg0porahZEu4B+KQumW4=
+    secure: nuphus1p4F5pTnUPFV78smLhRO/7Ts99brnQ3gVjeCD9j319NHlNuVeAwFOymqcZWBYEnXvKVc1IdyhEVLSFStPtkSnYwYAqgSt+Dn3Ai5wk4ei1eodfaPJBKfeDTqpE5VbDiODtasNTEA4UQZyT8gLRoswNHY+kdZNJLNzqFsQ4lszahhn1YDIWTI594mekSICE3JZtQVMiDKs3FvWOac/ZGmBm6JGdF5cc8yFH+ygy4KmGDe5XHSqRaVOQl04OUELWTc3JlK/1wuggVkSKj7qGBlVcewk3QxW93v6E6nhBhR8Sc7UxgVJP67KDdrH+pgk3jB6wnGBF1BWZxCl2jGWQauPoNjOfedDcd1thb4IC/ft5xyFWRqWkGNBF+jCL/Jp0+P4yqAnJIKfB5+92UFBGiLzjT0bnYB0mzZRdtrUOEPRU4A/vMIm66HUrTxDSTIeasnCbvFiR+5xQlR20jd1kltCNN48cvJCS0/d/fD2Rt2noHy72QGtzG6XW1yYT8+vc5MkSwiL/5q2Pz+Y7TvnCU+HqRtRpPTg/QOAIGya5pHR8Ik0AzEk2LysEKOf0Z1jkBC9+yWATk13mx+qryK1CN/dw+Yr54j5vC/OlXKYE8B7UslBsCfUye9ZswoRtD0j4qQLZQ5ekO7L7CCLgQ4yeFRn8EXRAEZ/sgcdYb5w=
   app: desolate-peak-51216
   on:
     branch: master
